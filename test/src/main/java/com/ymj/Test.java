@@ -60,6 +60,17 @@ public class Test {
         Boolean c = lambda2.x("xx","xx");
         System.out.println(c);
 
+        Lambda<String,Boolean> lambda3 = new Lambda<String, Boolean>() {
+            @Override
+            public Boolean x(String a, String b) {
+                if(a.equalsIgnoreCase(b)){
+                    return true;
+                }
+                return false;
+            }
+        };
+        System.out.println("lambda3             " +lambda3.x("a","A"));
+
         //-----------------------------------------------------------------------------------------------------
         List<String> list = Arrays.asList("1","2","3");
         //<R> Stream<R> map(Function<? super T, ? extends R> mapper)
