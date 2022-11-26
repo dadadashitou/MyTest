@@ -5,6 +5,7 @@ import org.apache.logging.log4j.util.PropertySource;
 
 import java.util.*;
 import java.util.function.BiFunction;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -152,10 +153,19 @@ public class Test {
         };
         int compare = comparator.compare(new Test("aa", "bb", 1), new Test("bb", "cc", 2));
         System.out.println("compare            "+compare);
+//        Collections.sort(listxx,comparator);
         Collections.sort(listxx,comparator.reversed());
         System.out.println("Comparator              " + listxx);
 
         Boolean apply1 = biFunction.apply("a", "b");
         System.out.println("biFunction              "+apply1);
+
+        //----------------------------------------------------------------------------------------------------------
+        Consumer<Test> consumer = (t) -> {
+            t.setTest("consumer");
+        };
+        consumer.accept(test);
+        System.out.println(test);
+
     }
 }
