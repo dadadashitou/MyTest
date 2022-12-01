@@ -8,6 +8,8 @@ import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -16,6 +18,7 @@ public class Test {
     private String test;
     private String xx;
     private Integer length;
+    private final String finalword = "xxx";
 
     public Test(String test,String xx,Integer length){
         this.test = test;
@@ -167,5 +170,17 @@ public class Test {
         consumer.accept(test);
         System.out.println(test);
 
+        //--------------------------------------------------------------------------------------------------------
+
+        String strContent="99 甜瓜发布了一篇小红书笔记，快来看吧！ \uD83D\uDE06 mFfQpxpkKVVllvO \uD83D\uDE06 http://xhslink.com/TTEWwl，复制本条信息，打开【小红书】App查看精彩内容！";
+        String regex = "(http:|https:)//[^[A-Za-z0-9\\._\\?%&+\\-=/#]]*";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(strContent);
+        List<String> listxxx= new ArrayList<>();
+        while (matcher.find()) {
+            String urlStr=matcher.group();
+            listxxx.add(urlStr);
+        }
+        System.out.println(listxxx);
     }
 }
