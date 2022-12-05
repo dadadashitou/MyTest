@@ -3,6 +3,7 @@ package com.ymj;
 import lombok.Data;
 import org.apache.logging.log4j.util.PropertySource;
 
+import java.io.*;
 import java.util.*;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
@@ -182,5 +183,45 @@ public class Test {
             listxxx.add(urlStr);
         }
         System.out.println(listxxx);
+
+        //--------------------------------------字节流-------------------------------------------------------------------
+        try {
+            FileInputStream fileInputStream = new FileInputStream("C:\\Users\\10024\\Desktop\\新建 文本文档.txt");
+            FileOutputStream fileOutputStream = new FileOutputStream("C:\\Users\\10024\\Desktop\\xxx.txt");
+
+            int x;
+            while ((x = fileInputStream.read())!=-1){
+                fileOutputStream.write((char)x);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        //--------------------------------------字符流-------------------------------------------------------------------
+        try {
+            FileReader fileReader = new FileReader("C:\\Users\\10024\\Desktop\\新建 文本文档.txt");
+            FileWriter fileWriter = new FileWriter("C:\\Users\\10024\\Desktop\\xxxx.txt");
+            while((b=fileReader.read())!=-1){
+                fileWriter.write(b);
+                fileWriter.flush();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        //--------------------------------------字符流-------------------------------------------------------------------
+        try {
+            FileInputStream fileInputStream = new FileInputStream("C:\\Users\\10024\\Desktop\\新建 文本文档.txt");
+            FileOutputStream fileOutputStream = new FileOutputStream("C:\\Users\\10024\\Desktop\\xxxxx.txt");
+            InputStreamReader fileReader = new InputStreamReader(fileInputStream);
+            OutputStreamWriter fileWriter = new OutputStreamWriter(fileOutputStream,"utf-16");
+            while((b=fileReader.read())!=-1){
+                fileWriter.write(b);
+                fileWriter.flush();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
